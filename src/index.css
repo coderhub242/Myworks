@@ -1,0 +1,309 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CHARTERED ANIMATIONS Design System */
+/* All colors MUST be HSL for proper theming */
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Locked Palette */
+    --coffee-brown: 21 30% 24%;      /* #4B2E2E - Primary brand */
+    --milk-yellow: 46 68% 83%;       /* #F5E6B3 - Secondary accent */
+    --shaded-black: 60 23% 8%;       /* #1A1A0D - Dark with yellow tint */
+    --warm-gray: 44 8% 75%;          /* #C4C2B2 - Support gray */
+    --pure-white: 0 0% 100%;         /* #FFFFFF - Clean white */
+
+    /* Semantic Design Tokens */
+    --background: var(--pure-white);
+    --foreground: var(--shaded-black);
+    
+    /* Hero & Dark Sections */
+    --hero-bg: var(--shaded-black);
+    --hero-text: var(--milk-yellow);
+    
+    /* Brand Section Backgrounds */
+    --section-coffee: var(--coffee-brown);
+    --section-milk: var(--milk-yellow);
+    --section-dark: var(--shaded-black);
+    
+    /* Interactive Elements */
+    --primary: var(--coffee-brown);
+    --primary-foreground: var(--milk-yellow);
+    --secondary: transparent;
+    --secondary-foreground: var(--milk-yellow);
+    
+    /* UI Components */
+    --card: var(--pure-white);
+    --card-foreground: var(--coffee-brown);
+    --border: 46 68% 83% / 0.15;     /* Milk with opacity */
+    --input: var(--warm-gray);
+    --ring: 46 68% 83% / 0.65;       /* Focus ring */
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--shaded-black)), hsl(var(--shaded-black) / 0.8));
+    --gradient-glow: radial-gradient(circle at 30% 70%, hsl(var(--milk-yellow) / 0.15) 0%, transparent 50%);
+    
+    /* Shadows & Effects */
+    --shadow-card: 0 10px 30px hsl(0 0% 0% / 0.25);
+    --shadow-hover: 0 20px 40px hsl(0 0% 0% / 0.35);
+    --glow-ring: 0 0 0 4px hsl(var(--milk-yellow) / 0.25);
+    
+    /* Typography Scale */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-accent: 'Playfair Display', serif;
+    
+    /* Spacing & Layout */
+    --section-padding: 5rem 0;
+    --section-padding-mobile: 3rem 0;
+    --container-max: 1200px;
+    --border-radius: 1.125rem;
+    --border-radius-lg: 1.375rem;
+    
+    /* Animation Timing */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-lift: transform 0.2s ease-out;
+  }
+
+  .dark {
+    --background: var(--shaded-black);
+    --foreground: var(--milk-yellow);
+    --card: var(--shaded-black);
+    --card-foreground: var(--milk-yellow);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Section Background Transitions */
+  section {
+    transition: background-color 1s ease-in-out;
+  }
+
+  /* Section Background Colors */
+  .section-header {
+    background-color: hsl(var(--shaded-black));
+  }
+
+  .section-home {
+    background-color: hsl(var(--shaded-black));
+  }
+
+  .section-about {
+    background-color: hsl(var(--warm-gray));
+  }
+
+  .section-services {
+    background-color: hsl(var(--milk-yellow));
+  }
+
+  .section-portfolio {
+    background-color: hsl(var(--coffee-brown));
+  }
+
+  .section-contact {
+    background-color: hsl(var(--shaded-black));
+  }
+
+  .section-footer {
+    background-color: hsl(var(--shaded-black));
+  }
+
+  /* Typography Classes */
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  
+  .font-body {
+    font-family: var(--font-body);
+  }
+  
+  .font-accent {
+    font-family: var(--font-accent);
+  }
+}
+
+@layer components {
+  /* Section Backgrounds */
+  .bg-coffee {
+    background-color: hsl(var(--coffee-brown));
+  }
+  
+  .bg-milk {
+    background-color: hsl(var(--milk-yellow));
+  }
+  
+  .bg-shaded {
+    background: hsl(var(--shaded-black));
+    background-image: var(--gradient-glow);
+  }
+
+  /* Hero Section Styles */
+  .hero-gradient {
+    background: var(--gradient-hero);
+    background-image: var(--gradient-glow);
+  }
+
+  /* Card Styles */
+  .card-elegant {
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-card);
+    border: 1px solid hsl(var(--border));
+    transition: var(--transition-smooth);
+  }
+
+  .card-elegant:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Button Hover Effects */
+  .btn-lift {
+    transition: var(--transition-lift);
+  }
+
+  .btn-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--glow-ring), var(--shadow-hover);
+  }
+
+  /* Portfolio Grid */
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    transition: var(--transition-smooth);
+  }
+
+  .portfolio-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 2px hsl(var(--milk-yellow));
+  }
+
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: hsl(var(--coffee-brown) / 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition-smooth);
+  }
+
+  .portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+  }
+
+  /* Form Focus States */
+  .form-input:focus {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Hero Image Block */
+  .hero-image-container {
+    aspect-ratio: 5/4;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px hsl(0 0% 0% / 0.25);
+    border: 1px solid hsl(var(--milk-yellow) / 0.18);
+    transition: all 220ms ease-out;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-container:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 2px hsl(var(--milk-yellow) / 0.35), 0 15px 35px hsl(0 0% 0% / 0.35);
+  }
+
+  .hero-image-container:focus {
+    outline: 2px solid hsl(var(--milk-yellow) / 0.65);
+    outline-offset: 2px;
+  }
+
+  .hero-image-placeholder {
+    background: hsl(var(--shaded-black));
+    background-image: 
+      radial-gradient(circle, hsl(var(--milk-yellow) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero-image-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: hsl(var(--milk-yellow));
+    color: hsl(var(--coffee-brown));
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    z-index: 10;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Entrance Animations */
+  .fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .fade-up-delay {
+    animation: fadeUp 0.6s ease-out 0.2s forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+@layer utilities {
+  /* Gradient Text */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--milk-yellow)), hsl(var(--coffee-brown)));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Glass Effect */
+  .glass {
+    backdrop-filter: blur(10px);
+    background: hsl(var(--shaded-black) / 0.8);
+  }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
