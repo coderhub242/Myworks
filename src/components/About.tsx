@@ -1,5 +1,5 @@
 // Using the uploaded logo image directly from Lovable uploads
-const founderPhoto = "@\assets\logo.png";
+const founderPhoto = "/lovable-uploads/2e4cd760-2c8c-44c2-910a-d885f5036672.png";
 const About = () => {
   return <section id="about" className="bg-coffee py-[14px]">
       <div className="max-w-container mx-auto px-4">
